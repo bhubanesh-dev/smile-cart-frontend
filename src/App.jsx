@@ -1,5 +1,5 @@
 import "./App.css";
-import Product from "./componets/Product";
+import Product from "./components/Product";
 
 const App = () => <Product />;
 export default App;
