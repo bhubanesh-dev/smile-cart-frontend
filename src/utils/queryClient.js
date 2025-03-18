@@ -4,10 +4,6 @@ import { QueryClient, QueryCache } from "react-query";
 import { createWebStoragePersistor } from "react-query/createWebStoragePersistor-experimental";
 import { persistQueryClient } from "react-query/persistQueryClient-experimental";
 
-const localStoragePersistor = createWebStoragePersistor({
-  storage: window.localStorage,
-});
-
 const queryClient = new QueryClient({
   queryCache: new QueryCache(),
   defaultOptions: {
@@ -18,9 +14,13 @@ const queryClient = new QueryClient({
   },
 });
 
+const localStoragePersistor = createWebStoragePersistor({
+  storage: window.localStorage,
+});
+
 persistQueryClient({
   queryClient,
-  localStoragePersistor,
+  persistor: localStoragePersistor,
   maxAge: Infinity,
   dehydrateOptions: {
     shouldDehydrateQuery: ({ queryKey }) =>
